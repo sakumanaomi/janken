@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/sample.css">
+  <title>じゃんけん</title>
+</head>
+
+<body onload="LoadProc();">
+  <header>
+    <h1>じゃんけん</h1>
+    <p id="DateTimeDisp">日時を表示します</p>
+  </header>
+
+  <main>
+    <!-- ジャンケンのボタン -->
+    <ul class="janken">
+      <li><img src="img/janken_gu.png" id="gu_btn"></li>
+      <li><img src="img/janken_choki.png" id="cho_btn"></li>
+      <li><img src="img/janken_pa.png" id="par_btn"></li>
+    </ul>
+
+    <!-- PCが何を出したか -->
+    <div class="PC_box">
+      <!-- PC画面のイメージ -->
+      <div class="PC_box1">
+        <img src="img/PC.png" class="pcgamen" alt="">
+      </div>
+      <!-- コンピュータの出した手 -->
+      <div id="com_hand">
+        <p>コンピュータの出した手は？</p>
+      </div>
+      <!-- コンピュータの出した手のイメージ ??-->
+      <div id="tenokatachi">
+        
+      </div>
+    </div>
+    <!-- 勝ち負けの結果 -->
+    <div id="result">結果は？</div>
+  </main>
+
+  <footer>フッター</footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    //ここに処理を追加
+
+    // 日付
+    var now = new Date();
+    function LoadProc() {
+      var target = document.getElementById("DateTimeDisp");
+
+      var Year = now.getFullYear();
+      var Month = now.getMonth() + 1;
+      var Date = now.getDate();
+      var Hour = now.getHours();
+      var Min = now.getMinutes();
+      var Sec = now.getSeconds();
+
+      target.innerHTML = Year + "年" + Month + "月" + Date + "日" + Hour + ":" + Min + ":" + Sec;
+    }
+
+    // PCの出した手
+    // グーぼたん
+    $("#gu_btn").on("click", function () {
+      const min = 0;
+      const max = 2;
+      const randomNumber = Math.floor((Math.random() * (max
+        - min + 1)) + min);
+      console.log(randomNumber);
+
+
+      if (randomNumber === 0) {
+        $("#result").text("勝ち");
+        $("#com_hand").text("チョキ");
+        // ↑コンピューターのチョキをイメージに変えたいのです。ググってみたけど見つからなくて何て検索したらいいのでしょう？？
+
+      } else if (randomNumber === 1) {
+        $("#result").text("あいこ");
+        $("#com_hand").text("グー");
+      } else if (randomNumber === 2) {
+        $("#result").text("負け");
+        $("#com_hand").text("パー");
+      } else {
+        $("#result").text("error");
+      }
+    });
+
+    // チョキボタン
+    $("#cho_btn").on("click", function () {
+      const min = 0;
+      const max = 2;
+      const randomNumber = Math.floor((Math.random() * (max
+        - min + 1)) + min);
+      console.log(randomNumber);
+
+      if (randomNumber === 0) {
+        $("#result").text("勝ち");
+        $("#com_hand").text("パー");
+      } else if (randomNumber === 1) {
+        $("#result").text("あいこ");
+        $("#com_hand").text("チョキ")
+      } else if (randomNumber === 2) {
+        $("#cresult").text("負け");
+        $("#com_hand").text("グー");
+      } else {
+        $("#result").text("error");
+      }
+    });
+
+    //パーボタン
+    $("#par_btn").on("click", function () {
+      const min = 0;
+      const max = 2;
+      const randomNumber = Math.floor((Math.random() * (max
+        - min + 1)) + min);
+      console.log(randomNumber);
+
+      if (randomNumber === 0) {
+        $("#result").text("勝ち");
+        $("#com_hand").text("グー");
+      } else if (randomNumber === 1) {
+        $("#result").text("あいこ");
+        $("#com_hand").text("パー")
+      } else if (randomNumber === 2) {
+        $("#result").text("負け");
+        $("#com_hand").text("チョキ")
+      } else {
+        $("#result").text("error");
+      }
+    }); 
+  </script>
+
+</body>
+
+</html>
