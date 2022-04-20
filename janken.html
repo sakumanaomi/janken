@@ -23,18 +23,30 @@
     </ul>
 
     <!-- PCが何を出したか -->
-    <div class="PC_box">
-      <!-- PC画面のイメージ -->
-      <div class="PC_box1">
-        <img src="img/PC.png" class="pcgamen" alt="">
+    <div class="pcBox">
+      <div class="balloon2-right" id="balloon_txt">
+        <p>こんにちは。
+        <br>  ジャンケン負けないぞ。</p>
+      </div>
+      <div class="">
+        <!-- PC画面のイメージ -->
+        <div class="PC_box1">
+          <img src="img/PC.png" class="pcgamen" alt="">
+        </div>
       </div>
       <!-- コンピュータの出した手 -->
       <div id="com_hand">
-        <p>コンピュータの出した手は？</p>
+
+        <!-- <p>コンピュータの出した手は？</p> -->
+        <img id="hand" src="" alt="">
+        <audio src="bgm/win.mp3" id="win-button"></audio>
+        <audio src="bgm/more.mp3" id="more-button"></audio>
+        <audio src="bgm/lose.mp3" id="lose-button"></audio>
       </div>
       <!-- コンピュータの出した手のイメージ ??-->
       <div id="tenokatachi">
-        
+
+
       </div>
     </div>
     <!-- 勝ち負けの結果 -->
@@ -48,16 +60,16 @@
     //ここに処理を追加
 
     // 日付
-    var now = new Date();
+    let now = new Date();
     function LoadProc() {
-      var target = document.getElementById("DateTimeDisp");
+      let target = document.getElementById("DateTimeDisp");
 
-      var Year = now.getFullYear();
-      var Month = now.getMonth() + 1;
-      var Date = now.getDate();
-      var Hour = now.getHours();
-      var Min = now.getMinutes();
-      var Sec = now.getSeconds();
+      let Year = now.getFullYear();
+      let Month = now.getMonth() + 1;
+      let Date = now.getDate();
+      let Hour = now.getHours();
+      let Min = now.getMinutes();
+      let Sec = now.getSeconds();
 
       target.innerHTML = Year + "年" + Month + "月" + Date + "日" + Hour + ":" + Min + ":" + Sec;
     }
@@ -73,20 +85,30 @@
 
 
       if (randomNumber === 0) {
-        $("#result").text("勝ち");
-        $("#com_hand").text("チョキ");
+        $("#result").text("あなたの勝ち");
+        $("#hand").attr('src', "img/janken_choki.png");
+        $("#win-button").get(0).play();
+       
         // ↑コンピューターのチョキをイメージに変えたいのです。ググってみたけど見つからなくて何て検索したらいいのでしょう？？
 
       } else if (randomNumber === 1) {
         $("#result").text("あいこ");
-        $("#com_hand").text("グー");
+        $("#hand").attr('src', "img/janken_gu.png");
+        $("#more-button").get(0).play();
+       
+
       } else if (randomNumber === 2) {
-        $("#result").text("負け");
-        $("#com_hand").text("パー");
+        $("#result").text("あなたの負け");
+        $("#hand").attr('src', "img/janken_pa.png");
+        $("#lose-button").get(0).play();
+        
+
       } else {
         $("#result").text("error");
       }
     });
+
+    
 
     // チョキボタン
     $("#cho_btn").on("click", function () {
@@ -97,14 +119,20 @@
       console.log(randomNumber);
 
       if (randomNumber === 0) {
-        $("#result").text("勝ち");
-        $("#com_hand").text("パー");
+        $("#result").text("あなたの勝ち");
+        $("#hand").attr('src', "img/janken_pa.png");
+        $("#win-button").get(0).play();
+
       } else if (randomNumber === 1) {
         $("#result").text("あいこ");
-        $("#com_hand").text("チョキ")
+        $("#hand").attr('src', "img/janken_choki.png");
+        $("#more-button").get(0).play();
+
       } else if (randomNumber === 2) {
-        $("#cresult").text("負け");
-        $("#com_hand").text("グー");
+        $("#result").text("あなたの負け");
+        $("#hand").attr('src', "img/janken_gu.png");
+        $("#lose-button").get(0).play();
+
       } else {
         $("#result").text("error");
       }
@@ -119,14 +147,20 @@
       console.log(randomNumber);
 
       if (randomNumber === 0) {
-        $("#result").text("勝ち");
-        $("#com_hand").text("グー");
+        $("#result").text("あなたの勝ち");
+        $("#hand").attr('src', "img/janken_gu.png");
+        $("#win-button").get(0).play();
+
       } else if (randomNumber === 1) {
         $("#result").text("あいこ");
-        $("#com_hand").text("パー")
+        $("#hand").attr('src', "img/janken_pa.png");
+        $("#more-button").get(0).play();
+
       } else if (randomNumber === 2) {
-        $("#result").text("負け");
-        $("#com_hand").text("チョキ")
+        $("#result").text("あなたの負け");
+        $("#hand").attr('src', "img/janken_choki.png");
+        $("#lose-button").get(0).play();
+      
       } else {
         $("#result").text("error");
       }
