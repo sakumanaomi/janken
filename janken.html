@@ -17,9 +17,9 @@
   <main>
     <!-- ジャンケンのボタン -->
     <ul class="janken">
-      <li><img src="img/janken_gu.png" id="gu_btn"></li>
-      <li><img src="img/janken_choki.png" id="cho_btn"></li>
-      <li><img src="img/janken_pa.png" id="par_btn"></li>
+      <li><img src="img/janken_gu.png" id="gu_btn" onClick="count()"></li>
+      <li><img src="img/janken_choki.png" id="cho_btn" onClick="count()"></li>
+      <li><img src="img/janken_pa.png" id="par_btn" onClick="count()"></li>
     </ul>
 
     <!-- PCが何を出したか -->
@@ -36,29 +36,32 @@
       </div>
       <!-- コンピュータの出した手 -->
       <div id="com_hand">
-
-        <!-- <p>コンピュータの出した手は？</p> -->
+        <!-- <p>コンピュータの出した手は？音は？</p> -->
         <img id="hand" src="" alt="">
         <audio src="bgm/win.mp3" id="win-button"></audio>
         <audio src="bgm/more.mp3" id="more-button"></audio>
         <audio src="bgm/lose.mp3" id="lose-button"></audio>
-      </div>
-      <!-- コンピュータの出した手のイメージ ??-->
-      <div id="tenokatachi">
-
-
-      </div>
+      </div>     
     </div>
     <!-- 勝ち負けの結果 -->
     <div id="result">結果は？</div>
+   
+    <p class="jankenCount">ジャンケンの回数<span id="count">0</span>回</p>
+  
   </main>
 
-  <footer>フッター</footer>
+  <footer><span></span></footer>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
     //ここに処理を追加
-
+    // ジャンケンの回数
+    function count() {
+        let thisCount = $("#count").html();//現状の値を取得
+        thisCount = Number(thisCount); //このままだと文字列なので数字列に変換
+        thisCount = thisCount + 1;//取得した値に１足す
+        $("#count").html(thisCount);//値を１足した数字に上書き
+      }
     // 日付
     let now = new Date();
     function LoadProc() {
@@ -73,45 +76,45 @@
 
       target.innerHTML = Year + "年" + Month + "月" + Date + "日" + Hour + ":" + Min + ":" + Sec;
     }
+    
+    // ゲーム回数を数える
+      
 
     // PCの出した手
     // グーぼたん
+    let gameCount = 0;
+    console.log(gameCount);
     $("#gu_btn").on("click", function () {
+      gameCount+= 1;
       const min = 0;
       const max = 2;
       const randomNumber = Math.floor((Math.random() * (max
         - min + 1)) + min);
       console.log(randomNumber);
-
 
       if (randomNumber === 0) {
         $("#result").text("あなたの勝ち");
         $("#hand").attr('src', "img/janken_choki.png");
         $("#win-button").get(0).play();
        
-        // ↑コンピューターのチョキをイメージに変えたいのです。ググってみたけど見つからなくて何て検索したらいいのでしょう？？
-
       } else if (randomNumber === 1) {
         $("#result").text("あいこ");
         $("#hand").attr('src', "img/janken_gu.png");
         $("#more-button").get(0).play();
        
-
       } else if (randomNumber === 2) {
         $("#result").text("あなたの負け");
         $("#hand").attr('src', "img/janken_pa.png");
-        $("#lose-button").get(0).play();
-        
+        $("#lose-button").get(0).play(); 
 
       } else {
         $("#result").text("error");
       }
     });
 
-    
-
     // チョキボタン
     $("#cho_btn").on("click", function () {
+      gameCount+= 1;
       const min = 0;
       const max = 2;
       const randomNumber = Math.floor((Math.random() * (max
@@ -122,6 +125,7 @@
         $("#result").text("あなたの勝ち");
         $("#hand").attr('src', "img/janken_pa.png");
         $("#win-button").get(0).play();
+        
 
       } else if (randomNumber === 1) {
         $("#result").text("あいこ");
@@ -140,6 +144,7 @@
 
     //パーボタン
     $("#par_btn").on("click", function () {
+      gameCount+= 1;
       const min = 0;
       const max = 2;
       const randomNumber = Math.floor((Math.random() * (max
@@ -165,7 +170,10 @@
         $("#result").text("error");
       }
     }); 
-  </script>
+
+    
+
+</script>
 
 </body>
 

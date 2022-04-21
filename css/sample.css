@@ -109,10 +109,10 @@ p {
 
 #hand {
     position: absolute;
-    top: 70%;
-    left: 64%;
+    top: 66%;
+    left: 60%;
     transform: translate(-50%, -50%);
-    width: 10%;
+    width: 8%;
 }
 
 .pc_janken {
@@ -162,4 +162,8 @@ li {
 li:hover {
     background: #0066CC;
     color: #fff;
+}
+
+.jankenCount{
+    font-size: 32px;
 }
