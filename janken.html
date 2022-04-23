@@ -26,7 +26,8 @@
     <div class="pcBox">
       <div class="balloon2-right" id="balloon_txt">
         <p>こんにちは。
-        <br>  ジャンケン負けないぞ。</p>
+          <br> ジャンケン負けないぞ。
+        </p>
       </div>
       <div class="">
         <!-- PC画面のイメージ -->
@@ -41,13 +42,14 @@
         <audio src="bgm/win.mp3" id="win-button"></audio>
         <audio src="bgm/more.mp3" id="more-button"></audio>
         <audio src="bgm/lose.mp3" id="lose-button"></audio>
-      </div>     
+      </div>
     </div>
     <!-- 勝ち負けの結果 -->
     <div id="result">結果は？</div>
-   
-    <p class="jankenCount">ジャンケンの回数<span id="count">0</span>回</p>
-  
+
+    <p>ジャンケンの回数<span id="count">0</span>回</p>
+    <p>あなたが勝った回数<span id="win">0</span>回</p>
+
   </main>
 
   <footer><span></span></footer>
@@ -55,13 +57,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
     //ここに処理を追加
-    // ジャンケンの回数
-    function count() {
-        let thisCount = $("#count").html();//現状の値を取得
-        thisCount = Number(thisCount); //このままだと文字列なので数字列に変換
-        thisCount = thisCount + 1;//取得した値に１足す
-        $("#count").html(thisCount);//値を１足した数字に上書き
-      }
+
     // 日付
     let now = new Date();
     function LoadProc() {
@@ -76,16 +72,17 @@
 
       target.innerHTML = Year + "年" + Month + "月" + Date + "日" + Hour + ":" + Min + ":" + Sec;
     }
-    
+
     // ゲーム回数を数える
-      
+    let count = 0
+    let win = 0
 
     // PCの出した手
     // グーぼたん
     let gameCount = 0;
     console.log(gameCount);
     $("#gu_btn").on("click", function () {
-      gameCount+= 1;
+      gameCount += 1;
       const min = 0;
       const max = 2;
       const randomNumber = Math.floor((Math.random() * (max
@@ -96,17 +93,26 @@
         $("#result").text("あなたの勝ち");
         $("#hand").attr('src', "img/janken_choki.png");
         $("#win-button").get(0).play();
-       
+        count += 1;
+        win += 1;
+        $('#count').text(count);
+        $('#win').text(win);
+
       } else if (randomNumber === 1) {
         $("#result").text("あいこ");
         $("#hand").attr('src', "img/janken_gu.png");
         $("#more-button").get(0).play();
-       
+        count += 1;
+        $('#count').text(count);
+
+
+
       } else if (randomNumber === 2) {
         $("#result").text("あなたの負け");
         $("#hand").attr('src', "img/janken_pa.png");
-        $("#lose-button").get(0).play(); 
-
+        $("#lose-button").get(0).play();
+        count += 1;
+        $('#count').text(count);
       } else {
         $("#result").text("error");
       }
@@ -114,7 +120,7 @@
 
     // チョキボタン
     $("#cho_btn").on("click", function () {
-      gameCount+= 1;
+      gameCount += 1;
       const min = 0;
       const max = 2;
       const randomNumber = Math.floor((Math.random() * (max
@@ -125,18 +131,23 @@
         $("#result").text("あなたの勝ち");
         $("#hand").attr('src', "img/janken_pa.png");
         $("#win-button").get(0).play();
-        
+        count += 1;
+        win += 1;
+        $('#count').text(count);
+        $('#win').text(win);
 
       } else if (randomNumber === 1) {
         $("#result").text("あいこ");
         $("#hand").attr('src', "img/janken_choki.png");
         $("#more-button").get(0).play();
-
+        count += 1;
+        $('#count').text(count);
       } else if (randomNumber === 2) {
         $("#result").text("あなたの負け");
         $("#hand").attr('src', "img/janken_gu.png");
         $("#lose-button").get(0).play();
-
+        count += 1;
+        $('#count').text(count);
       } else {
         $("#result").text("error");
       }
@@ -144,7 +155,7 @@
 
     //パーボタン
     $("#par_btn").on("click", function () {
-      gameCount+= 1;
+      gameCount += 1;
       const min = 0;
       const max = 2;
       const randomNumber = Math.floor((Math.random() * (max
@@ -155,25 +166,30 @@
         $("#result").text("あなたの勝ち");
         $("#hand").attr('src', "img/janken_gu.png");
         $("#win-button").get(0).play();
-
+        count += 1;
+        win += 1;
+        $('#count').text(count);
+        $('#win').text(win);
       } else if (randomNumber === 1) {
         $("#result").text("あいこ");
         $("#hand").attr('src', "img/janken_pa.png");
         $("#more-button").get(0).play();
-
+        count += 1;
+        $('#count').text(count);
       } else if (randomNumber === 2) {
         $("#result").text("あなたの負け");
         $("#hand").attr('src', "img/janken_choki.png");
         $("#lose-button").get(0).play();
-      
+        count += 1;
+        $('#count').text(count);
       } else {
         $("#result").text("error");
       }
-    }); 
+    });
 
-    
 
-</script>
+
+  </script>
 
 </body>
 

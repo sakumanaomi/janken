@@ -34,10 +34,6 @@ header {
     align-items: center;
 }
 
-p {
-    font-size: small;
-}
-
 .PC_box1 {
     width: 300px
 }
@@ -57,7 +53,6 @@ p {
 .balloon2-right {
     position: relative;
     display: inline-block;
-    margin: 1.5em 15px 1.5em 0;
     padding: 7px 10px;
     min-width: 120px;
     max-width: 100%;
@@ -134,10 +129,11 @@ footer {
 }
 
 p {
-    font-size: 200%;
+    font-size: 32px;
     text-align: center;
     /* border-bottom: 1px solid #fff; */
     height: 90px;
+    margin: 0 auto;
 }
 
 ul {
@@ -162,8 +158,4 @@ li {
 li:hover {
     background: #0066CC;
     color: #fff;
-}
-
-.jankenCount{
-    font-size: 32px;
 }
