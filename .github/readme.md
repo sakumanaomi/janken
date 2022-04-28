@@ -1,5 +1,5 @@
 # ジャンケン
-
+https://sakumanaomi.github.io/janken/
 ## ジャンケンをするゲーム
 
 - ちゃんと動く
