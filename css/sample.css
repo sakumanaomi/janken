@@ -11,7 +11,7 @@ header {
     /* background-color: #fff; */
     border-bottom: 1px solid #ccc;
     text-align: center;
-    padding-top: 30px;
+    padding-top: 10px;
 }
 
 /* 日付 */
@@ -104,7 +104,7 @@ header {
 
 #hand {
     position: absolute;
-    top: 66%;
+    top: 55%;
     left: 60%;
     transform: translate(-50%, -50%);
     width: 8%;
@@ -132,7 +132,6 @@ p {
     font-size: 32px;
     text-align: center;
     /* border-bottom: 1px solid #fff; */
-    height: 90px;
     margin: 0 auto;
 }
 
